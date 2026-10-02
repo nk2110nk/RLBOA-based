@@ -80,13 +80,13 @@ Coffee Camera Lunch SmartPhone Kitchen Travel party
 `train.py` で学習相手として選べる negotiator:
 
 ```text
-Boulware Linear Conceder Atlas3
+Boulware Linear Conceder Atlas3 CUHKAgent
 ```
 
 `test_negotiator.py` で評価相手として選べる negotiator:
 
 ```text
-Boulware Linear Conceder TitForTat1 TitForTat2 AgentK HardHeaded Atlas3 AgentGG
+Boulware Linear Conceder Atlas3 CUHKAgent
 ```
 
 ## 学習方法
@@ -119,7 +119,7 @@ python3 train.py \
 
 ```bash
 python3 train.py \
-  -a Boulware Conceder Linear Atlas3 \
+  -a Boulware Conceder Linear Atlas3 CUHKAgent \
   -i Laptop ItexvsCypress IS_BT_Acquisition Grocery thompson Car EnergySmall_A
 ```
 
@@ -131,7 +131,7 @@ python3 train.py \
 ```bash
 python3 train.py \
   --model-type general \
-  -a Boulware Conceder Linear Atlas3 \
+  -a Boulware Conceder Linear Atlas3 CUHKAgent \
   -i Laptop ItexvsCypress IS_BT_Acquisition Grocery thompson Car EnergySmall_A
 ```
 
@@ -145,7 +145,7 @@ utility bin、Opponent Model、Acceptance Conditionはexpert modelと同じで�
 python3 train.py \
   --model-type general \
   --ordered-train \
-  -a Boulware Conceder Linear Atlas3 \
+  -a Boulware Conceder Linear Atlas3 CUHKAgent \
   -i Laptop ItexvsCypress IS_BT_Acquisition Grocery thompson Car EnergySmall_A
 ```
 
@@ -167,7 +167,7 @@ python3 train.py \
 
 ## 一括学習
 
-7ドメイン × 4エージェントの重複あり組み合わせ、合計70実験を実行する
+7ドメイン × 5エージェントの重複あり組み合わせ、合計105実験を実行する
 スクリプトがあります。
 
 ```bash
@@ -183,7 +183,7 @@ Laptop ItexvsCypress IS_BT_Acquisition Grocery thompson Car EnergySmall_A
 対象エージェント:
 
 ```text
-Boulware Linear Conceder Atlas3
+Boulware Linear Conceder Atlas3 CUHKAgent
 ```
 
 各ドメインについて、次のような重複あり組み合わせを実行します。
@@ -193,12 +193,17 @@ Boulware-Boulware
 Boulware-Linear
 Boulware-Conceder
 Boulware-Atlas3
+Boulware-CUHKAgent
 Linear-Linear
 Linear-Conceder
 Linear-Atlas3
+Linear-CUHKAgent
 Conceder-Conceder
 Conceder-Atlas3
+Conceder-CUHKAgent
 Atlas3-Atlas3
+Atlas3-CUHKAgent
+CUHKAgent-CUHKAgent
 ```
 
 実行前にコマンドだけ確認する場合:
@@ -270,13 +275,13 @@ general model も同じ指定で評価できます。1つの `checkpoint.zip` �
 ```bash
 python3 test_negotiator.py \
   --model-type general \
-  -a Boulware Conceder Linear Atlas3 \
+  -a Boulware Conceder Linear Atlas3 CUHKAgent \
   -i Laptop Car EnergySmall_A \
   -m ./results/Laptop-ItexvsCypress-IS_BT_Acquisition-Grocery-thompson-Car-EnergySmall_A_Boulware-Conceder-Linear-Atlas3/20260627-160401-TA/RLBOA_Negotiator/
 ```
 
 `--model-type general` を付けると、`-a` に渡したエージェント集合から
-重複あり組み合わせを作ります。例えば4エージェントなら10ペアです。
+重複あり組み合わせを作ります。例えば5エージェントなら15ペアです。
 
 case1からcase6までのgeneral checkpointをまとめて評価する場合:
 
@@ -294,7 +299,7 @@ results/results_case6/
 ```
 
 各case配下にあるgeneral modelの `RLBOA_Negotiator/checkpoint.zip` を見つけて、
-12ドメイン × 4エージェントの重複あり10ペア、合計120設定を評価します。
+12ドメイン × 5エージェントの重複あり15ペア、合計180設定を評価します。
 評価結果は各general modelディレクトリ配下の `csv/<agent0>-<agent1>/<domain>/...`
 に保存されます。
 
@@ -303,7 +308,7 @@ results/results_case6/
 ```bash
 MODE=general \
 GENERAL_ISSUES="Laptop ItexvsCypress IS_BT_Acquisition Grocery thompson Car EnergySmall_A Coffee Camera Lunch SmartPhone Kitchen" \
-GENERAL_AGENTS="Boulware Linear Conceder Atlas3" \
+GENERAL_AGENTS="Boulware Linear Conceder Atlas3 CUHKAgent" \
 ./run_test_cases.sh
 ```
 

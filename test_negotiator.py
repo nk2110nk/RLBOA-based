@@ -36,6 +36,7 @@ AGENT_LIST = [
     'Linear',
     'Conceder',
     'Atlas3',
+    'CUHKAgent',
 ]
 CHECKPOINT_NAME = 'checkpoint.zip'
 

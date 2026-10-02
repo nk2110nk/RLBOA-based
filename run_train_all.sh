@@ -16,6 +16,7 @@ AGENTS=(
   Linear
   Conceder
   Atlas3
+  CUHKAgent
 )
 
 TIMESTEPS="${TIMESTEPS:-100000}"

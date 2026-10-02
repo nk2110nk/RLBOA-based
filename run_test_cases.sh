@@ -15,7 +15,7 @@ NOISE="${NOISE:-0}"
 PLOT="${PLOT:-0}"
 CASES="${CASES:-}"
 GENERAL_ISSUES="${GENERAL_ISSUES:-Laptop ItexvsCypress IS_BT_Acquisition Grocery thompson Car EnergySmall_A Coffee Camera Lunch SmartPhone Kitchen}"
-GENERAL_AGENTS="${GENERAL_AGENTS:-Boulware Linear Conceder Atlas3}"
+GENERAL_AGENTS="${GENERAL_AGENTS:-Boulware Linear Conceder Atlas3 CUHKAgent}"
 
 usage() {
   cat <<'EOF'
